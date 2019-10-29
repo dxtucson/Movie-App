@@ -22,7 +22,7 @@ interface MovieDao {
     abstract fun loadAll(): List<Movie>
 
     @Query("SELECT * FROM Movie WHERE id = :id")
-    abstract fun loadById(id: Int): Movie
+    abstract fun loadById(id: Int): Movie?
 
     @Query("SELECT * FROM Movie WHERE isFavorite IS 1")
     abstract fun loadFavoriteMovies(): List<Movie>

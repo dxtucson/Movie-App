@@ -52,6 +52,11 @@ class SearchByDateViewModel(application: Application) : MyViewModel(application)
                         list.addAll(response.body()!!.results)
                         Collections.sort(list, MovieComparator())
                         if (page == 1) networkBusy.postValue(false)
+                        for (movie in list) {
+                            movieDao.loadById(movie.id)?.let {
+                                movie.isFavorite = it.isFavorite
+                            }
+                        }
                         movieList.postValue(list)
                         searchByDateRange(from, to, page + 1)
                     }
