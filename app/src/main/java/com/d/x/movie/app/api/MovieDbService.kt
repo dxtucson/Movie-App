@@ -1,4 +1,4 @@
-package com.d.x.movie.app.network
+package com.d.x.movie.app.api
 
 import com.d.x.movie.app.data.GenresResponse
 import com.d.x.movie.app.data.GetMoviesResponse

@@ -3,7 +3,7 @@ package com.d.x.movie.app.viewModels
 import android.app.Application
 import com.d.x.movie.app.adapters.MovieAdapter.Companion.genreMap
 import com.d.x.movie.app.data.MovieComparator
-import com.d.x.movie.app.network.ServiceApi
+import com.d.x.movie.app.api.ServiceApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

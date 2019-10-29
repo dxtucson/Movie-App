@@ -1,4 +1,4 @@
-package com.d.x.movie.app.network
+package com.d.x.movie.app.api
 
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

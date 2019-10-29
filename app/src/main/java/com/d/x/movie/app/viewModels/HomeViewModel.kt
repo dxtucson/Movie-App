@@ -1,18 +1,11 @@
 package com.d.x.movie.app.viewModels
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
 import com.d.x.movie.app.adapters.MovieAdapter.Companion.genreMap
-import com.d.x.movie.app.data.Movie
-import com.d.x.movie.app.data.MovieComparator
-import com.d.x.movie.app.db.AppDB
-import com.d.x.movie.app.network.ServiceApi
+import com.d.x.movie.app.api.ServiceApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import java.text.SimpleDateFormat
-import java.util.*
 
 class HomeViewModel(application: Application) : MyViewModel(application) {
 
