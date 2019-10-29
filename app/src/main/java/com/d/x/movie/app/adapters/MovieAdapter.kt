@@ -89,14 +89,20 @@ class MovieAdapter(
                         holder.genre1.visibility = View.VISIBLE
                         holder.genre1.text = map[id]
                         holder.genre1.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre2.visibility = View.INVISIBLE
+                        holder.genre3.visibility = View.INVISIBLE
+                        holder.genre4.visibility = View.INVISIBLE
                     } else if (i==1) {
                         holder.genre2.visibility = View.VISIBLE
                         holder.genre2.text = map[id]
                         holder.genre2.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre3.visibility = View.INVISIBLE
+                        holder.genre4.visibility = View.INVISIBLE
                     } else if (i==2) {
                         holder.genre3.visibility = View.VISIBLE
                         holder.genre3.text = map[id]
                         holder.genre3.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre4.visibility = View.INVISIBLE
                     } else if (i==3) {
                         holder.genre4.visibility = View.VISIBLE
                         holder.genre4.text = map[id]
