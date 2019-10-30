@@ -33,7 +33,7 @@ class MovieAdapter(
         }
 
     companion object {
-        var genreMap : HashMap<Int, String>? = null
+        var genreMap: HashMap<Int, String>? = null
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
@@ -77,36 +77,60 @@ class MovieAdapter(
                 .error(errorDrawable!!)
                 .into(holder.poster)
         }
-        if (movie.genre_ids==null || movie.genre_ids.isEmpty()) {
+        if (movie.genre_ids == null || movie.genre_ids.isEmpty()) {
             holder.genre1.visibility = View.INVISIBLE
             holder.genre2.visibility = View.INVISIBLE
             holder.genre3.visibility = View.INVISIBLE
             holder.genre4.visibility = View.INVISIBLE
         } else {
             genreMap?.let { map ->
-                movie.genre_ids.forEachIndexed{i, id ->
-                    if (i==0) {
+                movie.genre_ids.forEachIndexed { i, id ->
+                    if (i == 0) {
                         holder.genre1.visibility = View.VISIBLE
                         holder.genre1.text = map[id]
-                        holder.genre1.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre1.setOnClickListener { p0 ->
+                            GenreClickListener(
+                                p0.context as Activity,
+                                id,
+                                map[id]
+                            ).onClick()
+                        }
                         holder.genre2.visibility = View.INVISIBLE
                         holder.genre3.visibility = View.INVISIBLE
                         holder.genre4.visibility = View.INVISIBLE
-                    } else if (i==1) {
+                    } else if (i == 1) {
                         holder.genre2.visibility = View.VISIBLE
                         holder.genre2.text = map[id]
-                        holder.genre2.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre2.setOnClickListener { p0 ->
+                            GenreClickListener(
+                                p0.context as Activity,
+                                id,
+                                map[id]
+                            ).onClick()
+                        }
                         holder.genre3.visibility = View.INVISIBLE
                         holder.genre4.visibility = View.INVISIBLE
-                    } else if (i==2) {
+                    } else if (i == 2) {
                         holder.genre3.visibility = View.VISIBLE
                         holder.genre3.text = map[id]
-                        holder.genre3.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre3.setOnClickListener { p0 ->
+                            GenreClickListener(
+                                p0.context as Activity,
+                                id,
+                                map[id]
+                            ).onClick()
+                        }
                         holder.genre4.visibility = View.INVISIBLE
-                    } else if (i==3) {
+                    } else if (i == 3) {
                         holder.genre4.visibility = View.VISIBLE
                         holder.genre4.text = map[id]
-                        holder.genre4.setOnClickListener { p0 -> GenreClickListener(p0.context as Activity, id, map[id]).onClick()}
+                        holder.genre4.setOnClickListener { p0 ->
+                            GenreClickListener(
+                                p0.context as Activity,
+                                id,
+                                map[id]
+                            ).onClick()
+                        }
                     }
                 }
             }
@@ -120,8 +144,19 @@ class MovieAdapter(
             )
         )
         holder.favoriteButton.setOnClickListener {
-
             favoriteListener.invoke(movie)
+        }
+        holder.itemView.setOnClickListener { p0 ->
+            val location = intArrayOf(0, 0)
+            holder.poster.getLocationInWindow(location)
+            MovieItemClickListener(
+                p0.context as Activity,
+                location[0],
+                location[1],
+                holder.poster.width,
+                holder.poster.height,
+                movie
+            ).onClick()
         }
     }
 
