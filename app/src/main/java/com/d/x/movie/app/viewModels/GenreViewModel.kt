@@ -37,12 +37,12 @@ class GenreViewModel(application: Application) : MyViewModel(application) {
                         ServiceApi.api.getMoviesByGenre(lastMonth, genreId.toString(), page)
                     if (response.isSuccessful) {
                         val list = if (page == 1) mutableListOf() else movieList.value!!.toMutableList()
-                        list.addAll(response.body()!!.results)
-                        for (movie in list) {
+                        for (movie in response.body()!!.results) {
                             movieDao.loadById(movie.id)?.let {
                                 movie.isFavorite = it.isFavorite
                             }
                         }
+                        list.addAll(response.body()!!.results)
                         Collections.sort(list, MovieComparator())
                         if (page == 1) networkBusy.postValue(false)
                         movieList.postValue(list)
