@@ -17,7 +17,7 @@ class GenreActivity : AppCompatActivity() {
     private var viewModel: GenreViewModel? = null
     private val clickOnFavorite: ((movie: Movie) -> Unit) = {
         it.isFavorite = !it.isFavorite
-        adapter.notifyItemChanged(adapter.movies.indexOf(it))
+        adapter.updateItem(it)
         viewModel?.updateMovie(it)
     }
     private var adapter: MovieAdapter =
@@ -56,8 +56,8 @@ class GenreActivity : AppCompatActivity() {
             viewModel?.loadByGenre(1, genreId)
         }
 
-        intent.getStringExtra(INTENT_KEY_GENRE_NAME)?.let{
-            setTitle("${it} Movies" )
+        intent.getStringExtra(INTENT_KEY_GENRE_NAME)?.let {
+            setTitle("${it} Movies")
         }
     }
 

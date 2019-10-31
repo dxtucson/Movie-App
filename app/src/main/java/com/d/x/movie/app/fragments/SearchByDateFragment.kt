@@ -24,7 +24,7 @@ class SearchByDateFragment : Fragment() {
 
     private val clickOnFavorite: ((movie: Movie) -> Unit) = {
         it.isFavorite = !it.isFavorite
-        adapter.notifyItemChanged(adapter.movies.indexOf(it))
+        adapter.updateItem(it)
         viewModel?.updateMovie(it)
     }
 

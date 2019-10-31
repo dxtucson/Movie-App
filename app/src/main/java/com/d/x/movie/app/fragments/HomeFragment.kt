@@ -14,7 +14,6 @@ import com.d.x.movie.app.adapters.MovieAdapter
 import com.d.x.movie.app.data.Movie
 import com.d.x.movie.app.viewModels.HomeViewModel
 import kotlinx.android.synthetic.main.fragment_home.*
-import kotlinx.android.synthetic.main.fragment_search_by_date.*
 
 class HomeFragment : Fragment() {
 
@@ -22,7 +21,7 @@ class HomeFragment : Fragment() {
 
     private val clickOnFavorite: ((movie: Movie) -> Unit) = {
         it.isFavorite = !it.isFavorite
-        adapter.notifyItemChanged(adapter.movies.indexOf(it))
+        adapter.updateItem(it)
         viewModel?.updateMovie(it)
     }
 

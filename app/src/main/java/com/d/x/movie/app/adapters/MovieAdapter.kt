@@ -38,7 +38,11 @@ class MovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_movie, parent, false)
-        return MovieHolder(view)
+        val holder = MovieHolder(view)
+        holder.favoriteButton.setOnClickListener {
+            favoriteListener.invoke(movies[holder.adapterPosition])
+        }
+        return holder
     }
 
     override fun getItemCount(): Int {
@@ -53,12 +57,12 @@ class MovieAdapter(
         if (payloads.isEmpty()) {
             onBindViewHolder(holder, position)
         } else {
-            val isFavorite = payloads[0] as Boolean
+            val isFavorite = payloads[0] as Array<Boolean>
             ImageViewCompat.setImageTintList(
                 holder.favoriteButton, ColorStateList.valueOf(
                     ContextCompat.getColor(
                         holder.favoriteButton.context,
-                        if (isFavorite) R.color.colorAccent else R.color.colorPrimary
+                        if (isFavorite[0]) R.color.colorAccent else R.color.colorPrimary
                     )
                 )
             )
@@ -143,9 +147,7 @@ class MovieAdapter(
                 )
             )
         )
-        holder.favoriteButton.setOnClickListener {
-            favoriteListener.invoke(movie)
-        }
+
         holder.itemView.setOnClickListener { p0 ->
             val location = intArrayOf(0, 0)
             holder.poster.getLocationInWindow(location)
@@ -165,6 +167,13 @@ class MovieAdapter(
         if (index > -1) {
             movies.removeAt(index)
             notifyItemRemoved(index)
+        }
+    }
+
+    fun updateItem(movie: Movie) {
+        val index = movies.indexOf(movie)
+        if (index > -1) {
+            notifyItemChanged(index, arrayOf(movie.isFavorite))
         }
     }
 
