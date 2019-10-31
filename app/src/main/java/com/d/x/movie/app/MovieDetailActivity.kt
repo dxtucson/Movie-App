@@ -7,6 +7,7 @@ import android.renderscript.Allocation
 import android.renderscript.Element
 import android.renderscript.RenderScript
 import android.renderscript.ScriptIntrinsicBlur
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.d.x.movie.app.posterAnim.PosterExpand
@@ -65,6 +66,7 @@ class MovieDetailActivity : AppCompatActivity() {
                 .error(errorDrawable!!)
                 .into(target)
         }
+        background_image.setOnClickListener { onBackPressed() }
         animatePoster()
     }
 
