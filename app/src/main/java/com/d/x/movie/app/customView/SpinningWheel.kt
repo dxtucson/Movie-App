@@ -2,7 +2,6 @@ package com.d.x.movie.app.customView
 
 import android.content.Context
 import android.graphics.Canvas
-import android.graphics.Color
 import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
@@ -63,8 +62,13 @@ class SpinningWheel : View {
             )
             canvas?.save()
             canvas?.rotate(i * 36f - 18f, centerX + cosValues[i] * r, centerY + sinValues[i] * r)
-            spinnerPaint.alpha = 255 * (i + 1 - startIndex) / 10
-            canvas?.drawRoundRect(spinnerRect, 0.5f * smallBarHeight, 0.5f * smallBarHeight, spinnerPaint)
+            spinnerPaint.alpha = (25.5f * (i + 1 - startIndex) + 255f).toInt() % 255
+            canvas?.drawRoundRect(
+                spinnerRect,
+                0.5f * smallBarHeight,
+                0.5f * smallBarHeight,
+                spinnerPaint
+            )
             canvas?.restore()
         }
         handler.postDelayed({
